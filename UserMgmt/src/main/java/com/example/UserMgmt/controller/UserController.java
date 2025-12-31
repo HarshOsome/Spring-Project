@@ -24,17 +24,9 @@ public class UserController {
 		this.userService = userService;
 	}
 
-//	@PostMapping
-//	public ResponseEntity<Users> create(@Valid @RequestBody CreateUserRequest req,
-//			@Valid @RequestBody AddressRequest address) {
-//		Users saved = userService.createUser(req, address);
-//		return ResponseEntity.ok(saved);
-//	}
-	
-	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Users> create(@Valid @RequestPart("user") CreateUserRequest user,
-			@Valid @RequestPart(name = "address", required = false) AddressRequest address) {
-		Users saved = userService.createUser(user, address);
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Users> create(@Valid @RequestBody CreateUserRequest req) {
+		Users saved = userService.createUser(req, req.getAddress());
 		return ResponseEntity.ok(saved);
 	}
 
