@@ -1,0 +1,30 @@
+package com.example.UserMgmt.dto;
+
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public  class AddressRequest{
+		@NotBlank @Size(max = 100)
+		private String line1;
+		
+		@Size(max = 100)
+		private String line2;
+		@NotBlank @Size(max = 80)
+		private String city;
+		
+		@NotBlank @Size(max = 80)
+		private String state;
+		
+		
+		@NotBlank @Size(max = 80)
+		private String country;
+		
+		@NotBlank
+		@Size(min = 4, max = 10)
+		private String postalCode;
+	}

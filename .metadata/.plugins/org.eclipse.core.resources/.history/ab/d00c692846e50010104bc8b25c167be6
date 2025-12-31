@@ -1,0 +1,5 @@
+package com.example.EnrollmentMgmt.entity;
+
+public class Enrollment {
+
+}

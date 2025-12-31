@@ -1,0 +1,5 @@
+package com.example.CourseMgmt.repository;
+
+public interface UserRepository {
+
+}

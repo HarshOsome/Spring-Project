@@ -1,0 +1,51 @@
+package com.example.EnrollmentMgmt.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Setter
+@NoArgsConstructor
+@Getter
+@Table(name = "enrollments", uniqueConstraints = 
+
+		@UniqueConstraint(name = "uk_enrollment_user_course", columnNames = {"user_id", "course_id" }))
+public class Enrollment {
+	public enum Status{ACTIVE, COMPLETED, CANCELLED}
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@NotNull @Column(name = "user_id", nullable = false)
+	private Long userId;
+	
+	@NotNull @Column (name = "course_id", nullable = false)
+	private Long courseId;
+	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
+	private Status status = Status.ACTIVE;
+	
+	@Column(nullable = false, updatable = false)
+	private LocalDateTime enrolledAt = LocalDateTime.now();
+	
+	private LocalDateTime completedAt;
+	
+	
+	
+}

@@ -1,0 +1,30 @@
+
+package com.example.CourseMgmt.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.CourseMgmt.entity.Course;
+import com.example.CourseMgmt.entity.Course.Status;
+
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Long> {
+
+    // Basic searches
+    List<Course> findByTitleContainingIgnoreCase(String title);
+
+    // Filter by instructor (UserMS id) and status
+    List<Course> findByInstructorUserIdAndStatus(Long instructorUserId, Status status);
+
+    // Find courses by instructor
+    List<Course> findByInstructorUserId(Long instructorUserId);
+
+    // Fetch by status
+    List<Course> findByStatus(Status status);
+
+    // Unique title per instructor (optional convention)
+    Optional<Course> findByInstructorUserIdAndTitleIgnoreCase(Long instructorUserId, String title);
+}

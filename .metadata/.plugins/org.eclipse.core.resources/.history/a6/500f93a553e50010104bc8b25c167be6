@@ -1,0 +1,5 @@
+package com.example.UserMgmt.service;
+
+public class UserService {
+
+}

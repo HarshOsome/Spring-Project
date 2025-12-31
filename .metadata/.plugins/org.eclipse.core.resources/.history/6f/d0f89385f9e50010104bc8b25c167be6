@@ -1,0 +1,6 @@
+package com.example.UserMgmt.exception;
+
+public class BadRequestException extends IllegalArgumentException {
+	
+
+}
