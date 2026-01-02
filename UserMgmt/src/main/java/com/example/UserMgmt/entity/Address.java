@@ -1,6 +1,8 @@
 
 package com.example.UserMgmt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "addresses")
 @Getter @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Address {
 
     @Id

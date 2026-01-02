@@ -1,0 +1,52 @@
+package com.example.CourseMgmt.service;
+import com.example.CourseMgmt.entity.Modules;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.CourseMgmt.dto.CreateCourseRequest;
+import com.example.CourseMgmt.entity.Course;
+import com.example.CourseMgmt.repository.CourseRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class CourseService {
+	private final CourseRepository courseRepository;
+
+	public CourseService(CourseRepository courseRepository) {
+		this.courseRepository = courseRepository;
+	}
+
+	@Transactional
+	public Course createCourse(CreateCourseRequest req) {
+		Course c = new Course();
+
+		c.setTitle(req.getTitle());
+		c.setDescription(req.getDescription());
+		c.setStatus(req.getStatus());
+		c.setEstimatedHours(req.getEstimatedHours());
+		c.setInstructorUserId(req.getInstructorUserId());
+		
+		if(req.getModules()!= null && !req.getModules().isEmpty()) {
+			List<Modules> modules = new ArrayList<>();
+			for(CreateCourseRequest.ModuleRequest mReq: req.getModules()) {
+				Modules m = new Modules();
+				m.setTitle(mReq.getTitle());
+				m.setContent(mReq.getContent());
+				m.setOrderIndex(mReq.getOrderIndex());
+				m.setCourse(c);
+				modules.add(m);
+				
+			}
+			c.setModules(modules);
+		}
+		return courseRepository.save(c);		
+	}
+	@Transactional
+	public Course getCourse(Long id) {
+		return courseRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Course Not Found"+id));
+	}
+}

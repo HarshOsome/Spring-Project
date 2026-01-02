@@ -37,7 +37,6 @@ INDEX VERSION 1.134+C:\springtool\sts-4.30.0.RELEASE\SmartLearning\.metadata\.pl
 1751557125.index
 3056278885.index
 900679089.index
-1483794719.index
 3423271140.index
 1433535398.index
 1270576226.index

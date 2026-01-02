@@ -1,6 +1,8 @@
 package com.example.UserMgmt.service;
 
 import java.util.Optional;
+
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 import com.example.UserMgmt.dto.AddressRequest;
 import com.example.UserMgmt.dto.CreateUserRequest;
@@ -8,6 +10,7 @@ import com.example.UserMgmt.entity.Address;
 import com.example.UserMgmt.entity.Users;
 import com.example.UserMgmt.repository.UserRepository;
 import jakarta.transaction.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
@@ -40,5 +43,13 @@ public class UserService {
 		}
 		return userRepository.save(u);
 	}
+	
+
+	 @Transactional
+	    public Users getUserById(Long id) throws BadRequestException {
+	        return userRepository.findById(id)
+	                .orElseThrow(() -> new BadRequestException("User not found: " + id));
+	    }
+
 
 }

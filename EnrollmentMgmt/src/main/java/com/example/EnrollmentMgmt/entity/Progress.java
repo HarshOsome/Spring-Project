@@ -22,29 +22,28 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-@Table(name = "progress", 
-			uniqueConstraints = {
-					@UniqueConstraint (name = "uk_progress_enrollment_module", columnNames = {"enrollment_id", "module_id"})
-			},
-			indexes = {
-					@Index(name = "idx_progress_enrollment", columnList = "enrollment_id"),
-					@Index(name = "idx_progress_module", columnList = "module_id")
-					
-			})
+@Table(name = "progress", uniqueConstraints = {
+		@UniqueConstraint(name = "uk_progress_enrollment_module", columnNames = { "enrollment_id",
+				"module_id" }) }, indexes = { @Index(name = "idx_progress_enrollment", columnList = "enrollment_id"),
+						@Index(name = "idx_progress_module", columnList = "module_id")
+
+})
 public class Progress {
-@Id
-@GeneratedValue( strategy = GenerationType.IDENTITY)
-private Long id;
-@NotNull @Column(name = "enrollment_id", nullable = false)
-private Long enrollmentId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@NotNull
+	@Column(name = "enrollment_id", nullable = false)
+	private Long enrollmentId;
 
-@NotNull @Column(name = "module_id ", nullable = false)
-private Long moduleId;
+	@NotNull
+	@Column(name = "module_id ", nullable = false)
+	private Long moduleId;
 
-@Min(0)@Max(100)
-private int completionPercent =0;
+	@Min(0)
+	@Max(100)
+	private int completionPercent = 0;
 
-private LocalDateTime lastViewedAt;
-
+	private LocalDateTime lastViewedAt;
 
 }

@@ -1,0 +1,18 @@
+package com.example.CourseMgmt.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.CourseMgmt.entity.Modules;
+
+@Repository
+public interface ModuleRepository extends JpaRepository<Module, Long>{
+	List<Modules> findByCourseId(Long courseId);
+	
+	List<Modules> findByCourseIdOrderByOrderIndexAsc(Long courseId);
+	
+	Optional<Modules> findByCourseIdAndOrderIndex(Long courseId, int orderIndex);
+}

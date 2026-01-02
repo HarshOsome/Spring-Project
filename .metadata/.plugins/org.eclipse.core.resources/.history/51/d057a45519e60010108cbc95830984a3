@@ -1,0 +1,5 @@
+package com.example.CourseMgmt.controller;
+
+public class CourseController {
+
+}

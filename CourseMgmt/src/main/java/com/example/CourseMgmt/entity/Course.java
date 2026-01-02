@@ -55,7 +55,7 @@ public class Course {
 	private Long instructorUserId;
 	
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Module> modules = new ArrayList<>();
+	private List<Modules> modules = new ArrayList<>();
 	
 	@Column(nullable = false, updatable = false)
 	private LocalDateTime createdAt = LocalDateTime.now();

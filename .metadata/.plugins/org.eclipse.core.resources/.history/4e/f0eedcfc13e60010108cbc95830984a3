@@ -1,0 +1,32 @@
+package com.example.CourseMgmt.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CreateCourseRequest {
+	@NotBlank
+	@Size(min = 3, max = 150)
+	private String title;
+
+	@NotBlank
+	@Size(min = 10, max = 2000)
+	private String description;
+
+	@NotNull
+	private com.example.CourseMgmt.entity.Course.Status status = com.example.CourseMgmt.entity.Course.Status.DRAFT;
+	
+	@Positive
+	private int estimatedHours;
+	
+	@NotNull
+	private Long instructorId;
+//	private List <ModuleRequest> modules;
+	
+	
+}
