@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.CourseMgmt.dto.CourseResponse;
 import com.example.CourseMgmt.dto.CreateCourseRequest;
 import com.example.CourseMgmt.entity.Course;
 import com.example.CourseMgmt.entity.Modules;
@@ -37,8 +38,18 @@ public class CourseController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Course> get(@PathVariable Long id) {
-		return ResponseEntity.ok(courseService.getCourse(id));
+	public ResponseEntity<CourseResponse> get(@PathVariable Long id) {
+		Course c = courseService.getCourse(id);
+		CourseResponse dto = new CourseResponse();
+		dto.setId(c.getId());
+		dto.setTitle(c.getTitle());
+		dto.setDescription(c.getDescription());
+		dto.setStatus(c.getStatus().name());
+		dto.setEstimatedHours(c.getEstimatedHours());
+		dto.setInstructorUserId(c.getInstructorUserId());
+		dto.setCreatedAt(c.getCreatedAt());
+		dto.setUpdateAt(c.getUpdateAt());
+		return ResponseEntity.ok(dto);
 	}
 
 	@GetMapping("/{id}/modules")

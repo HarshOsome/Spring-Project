@@ -1,0 +1,25 @@
+
+// EnrollmentMgmt/client/CourseDto.java
+package com.example.EnrollmentMgmt.client;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CourseDto {
+    private Long id;
+    private String title;
+    private String description;
+    private String estimatedHours;        // "DRAFT" | "PUBLISHED" | "ARCHIVED"
+    private Long instructorUserId;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime updateAt;
+    // You can add estimatedHours if you need it, otherwise ignore.
+}

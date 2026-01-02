@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 // Replace url with your actual UserMgmt base URL/port.
 // Later you can use service discovery instead of hardcoding URLs.
-@FeignClient(name = "user-service", url = "http://localhost:USER_PORT", path = "/api/users")
+@FeignClient(name = "user-service", url = "http://localhost:4444", path = "/api/users")
 public interface UserClient {
 
     @GetMapping("/{id}")

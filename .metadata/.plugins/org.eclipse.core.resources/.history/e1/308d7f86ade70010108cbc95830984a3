@@ -1,0 +1,5 @@
+package com.example.EnrollmentMgmt.client;
+
+public class CourseClient {
+
+}
